@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS & JS Animation Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: #ffdd59;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .demo-box {
+            width: 100%;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .animated-element {
+            width: 60px;
+            height: 60px;
+            background: #ff6b6b;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+        }
+        
+        .animated-element:hover {
+            transform: rotate(45deg) scale(1.2);
+            background: #4ecdc4;
+            border-radius: 50%;
+        }
+        
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background: #ff8e8e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .keyframe-demo {
+            width: 60px;
+            height: 60px;
+            background: #48dbfb;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .code-sample {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Animation classes for JavaScript toggling */
+        .bounce {
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-30px);}
+            60% {transform: translateY(-15px);}
+        }
+        
+        .spin {
+            animation: spin 1.5s linear;
+        }
+        
+        @keyframes spin {
+            100% {transform: rotate(360deg);}
+        }
+        
+        .flash {
+            animation: flash 0.5s;
+        }
+        
+        @keyframes flash {
+            0%, 50%, 100% {opacity: 1;}
+            25%, 75% {opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS & JavaScript Animation Showcase</h1>
+        <p>Explore the power of CSS transitions, animations, and JavaScript interactions</p>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>CSS Transitions</h2>
+            <p>CSS transitions allow property changes to occur smoothly over a specified duration.</p>
+            <div class="demo-box">
+                <div class="animated-element"></div>
+            </div>
+            <p>Hover over the red square to see a transition effect.</p>
+            <div class="code-sample">
+.animated-element {<br>
+  transition: all 0.4s ease;<br>
+}<br>
+<br>
+.animated-element:hover {<br>
+  transform: rotate(45deg) scale(1.2);<br>
+  background: #4ecdc4;<br>
+  border-radius: 50%;<br>
+}
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Keyframe Animations</h2>
+            <p>CSS keyframes allow you to create complex animations with multiple steps.</p>
+            <div class="demo-box">
+                <div class="keyframe-demo"></div>
+            </div>
+            <p>This blue circle uses a keyframe animation to pulse continuously.</p>
+            <div class="code-sample">
+@keyframes pulse {<br>
+  0% { transform: scale(1); opacity: 1; }<br>
+  50% { transform: scale(1.2); opacity: 0.7; }<br>
+  100% { transform: scale(1); opacity: 1; }<br>
+}<br>
+<br>
+.keyframe-demo {<br>
+  animation: pulse 2s infinite;<br>
+}
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>JavaScript Triggers</h2>
+            <p>Use JavaScript to dynamically add or remove CSS classes for animation control.</p>
+            <div class="demo-box">
+                <div id="js-demo-element" style="width: 60px; height: 60px; background: #1dd1a1; border-radius: 8px;"></div>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="animateElement('bounce')">Bounce</button>
+                <button class="btn" onclick="animateElement('spin')">Spin</button>
+                <button class="btn" onclick="animateElement('flash')">Flash</button>
+                <button class="btn" onclick="resetAnimation()">Reset</button>
+            </div>
+            <p>Click buttons to trigger different animations through JavaScript.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Function Scope Demo</h2>
+            <p>JavaScript functions have their own scope. Variables declared inside a function are local to that function.</p>
+            <div class="controls">
+                <button class="btn" onclick="scopeDemo()">Run Scope Demo</button>
+            </div>
+            <p id="scope-output">Click the button to see function scope in action.</p>
+            <div class="code-sample">
+function scopeDemo() {<br>
+  // This variable has function scope<br>
+  let localVar = "I'm local!";<br>
+  <br>
+  // This modifies the global message variable<br>
+  message = "Modified by function";<br>
+  <br>
+  console.log("Inside function:", localVar);<br>
+}
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Parameters & Return Values</h2>
+            <p>Functions can accept parameters and return values for reusable code.</p>
+            <div class="controls">
+                <input type="number" id="num1" placeholder="Number 1" value="5">
+                <input type="number" id="num2" placeholder="Number 2" value="3">
+                <button class="btn" onclick="calculate()">Calculate</button>
+            </div>
+            <p id="calculation-result">Enter numbers and click calculate to see the result.</p>
+            <div class="code-sample">
+function multiply(a, b) {<br>
+  return a * b;<br>
+}<br>
+<br>
+function calculate() {<br>
+  let x = parseFloat(document.getElementById('num1').value);<br>
+  let y = parseFloat(document.getElementById('num2').value);<br>
+  <br>
+  let result = multiply(x, y);<br>
+  <br>
+  document.getElementById('calculation-result').innerHTML = <br>
+    Result: ${x} × ${y} = ${result};<br>
+}
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Interactive Animation</h2>
+            <p>Combining CSS animations with JavaScript event listeners for interactive experiences.</p>
+            <div class="demo-box">
+                <div id="interactive-element" style="width: 60px; height: 60px; background: #f368e0; border-radius: 8px;"></div>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="startInteractiveMode()">Interactive Mode</button>
+                <button class="btn" onclick="stopInteractiveMode()">Stop</button>
+            </div>
+            <p>Click the button, then move your mouse around the box for interactive effects.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>CSS & JavaScript Animation Showcase | Created for educational purposes</p>
+    </footer>
+
+    <script>
+        // Global variable demonstration
+        let message = "Original global message";
+        
+        // Function to demonstrate scope
+        function scopeDemo() {
+            // This variable has function scope
+            let localVar = "I'm local!";
+            
+            // This modifies the global message variable
+            message = "Modified by function";
+            
+            // Update the display
+            document.getElementById('scope-output').innerHTML = 
+                `Local variable: "${localVar}"<br>Global message: "${message}"`;
+            
+            console.log("Inside function:", localVar);
+        }
+        
+        // Function with parameters and return value
+        function multiply(a, b) {
+            return a * b;
+        }
+        
+        function calculate() {
+            let x = parseFloat(document.getElementById('num1').value);
+            let y = parseFloat(document.getElementById('num2').value);
+            
+            if (isNaN(x) || isNaN(y)) {
+                alert("Please enter valid numbers");
+                return;
+            }
+            
+            let result = multiply(x, y);
+            
+            document.getElementById('calculation-result').innerHTML = 
+                `Result: ${x} × ${y} = ${result}`;
+        }
+        
+        // Animation control functions
+        function animateElement(animationType) {
+            const element = document.getElementById('js-demo-element');
+            
+            // Reset any existing animations
+            element.classList.remove('bounce', 'spin', 'flash');
+            
+            // Trigger reflow to restart animation
+            void element.offsetWidth;
+            
+            // Add the requested animation class
+            element.classList.add(animationType);
+        }
+        
+        function resetAnimation() {
+            const element = document.getElementById('js-demo-element');
+            element.classList.remove('bounce', 'spin', 'flash');
+        }
+        
+        // Interactive mode variables
+        let interactiveMode = false;
+        let interactiveElement;
+        
+        function startInteractiveMode() {
+            interactiveMode = true;
+            interactiveElement = document.getElementById('interactive-element');
+            
+            // Add event listener for mouse movement
+            document.querySelector('#interactive-element').parentElement.addEventListener('mousemove', handleMove);
+            
+            interactiveElement.style.backgroundColor = '#ff9ff3';
+            interactiveElement.innerHTML = "😊";
+        }
+        
+        function stopInteractiveMode() {
+            interactiveMode = false;
+            interactiveElement.style.backgroundColor = '#f368e0';
+            interactiveElement.innerHTML = "";
+            
+            // Remove event listener
+            document.querySelector('#interactive-element').parentElement.removeEventListener('mousemove', handleMove);
+        }
+        
+        function handleMove(e) {
+            if (!interactiveMode) return;
+            
+            const demoBox = e.currentTarget;
+            const rect = demoBox.getBoundingClientRect();
+            
+            // Calculate mouse position relative to the demo box
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate center of the demo box
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate distance from center
+            const distanceX = x - centerX;
+            const distanceY = y - centerY;
+            
+            // Apply transformation based on mouse position
+            interactiveElement.style.transform = `
+                translate(${distanceX / 5}px, ${distanceY / 5}px)
+                rotate(${distanceX / 10}deg)
+            `;
+            
+            // Change color based on position
+            const red = Math.min(255, Math.max(0, Math.abs(distanceX) * 2));
+            const blue = Math.min(255, Math.max(0, Math.abs(distanceY) * 2));
+            interactiveElement.style.backgroundColor = `rgb(${red}, 100, ${blue})`;
+        }
+    </script>
+</body>
+</html>
